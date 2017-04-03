@@ -13,11 +13,11 @@ var _gridironReact = require('gridiron-react');
 
 var _gridironReact2 = _interopRequireDefault(_gridironReact);
 
-var _gridironStyles = require('gridiron-styles');
+var _gridironStyles = require('@tixinc/gridiron-styles');
 
 var _gridironStyles2 = _interopRequireDefault(_gridironStyles);
 
-var _gridironThemes = require('gridiron-themes');
+var _gridironThemes = require('@tixinc/gridiron-themes');
 
 var gridironThemes = _interopRequireWildcard(_gridironThemes);
 
@@ -66,15 +66,16 @@ exports.reactPreStyles = _reactPreStyles2.default;
 exports.reactPreThemes = reactPreThemes;
 exports.reduxPager = _reduxPager2.default;
 function gridiron(deps) {
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      _ref$themeName = _ref.themeName,
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  var _ref$themeName = _ref.themeName,
       themeName = _ref$themeName === undefined ? 'mellow' : _ref$themeName,
       defaults = _objectWithoutProperties(_ref, ['themeName']);
 
   var pre = (0, _reactPre2.default)(deps, _extends({}, defaults, { styles: _reactPreStyles2.default, theme: reactPreThemes[themeName] }));
   deps = _extends({}, deps, pre);
 
-  var formula = (0, _reactFormula2.default)(deps, _extends({}, defaults, { styles: _reactFormulaStyles2.default, theme: reactFormulaThemes[themeName] }));
+  var formula = (0, _reactFormula2.default)(deps, _extends({}, defaults, { styles: _reactFormulaStyles2.default, theme: reactFormulaThemes[themeName] ? reactFormulaThemes[themeName] : reactFormulaThemes.yellow }));
   deps = _extends({}, deps, { formula: formula });
 
   var args = [deps, _extends({}, defaults, { styles: _gridironStyles2.default, theme: gridironThemes[themeName] })];

@@ -26,7 +26,7 @@ export default function gridiron (deps, { themeName = 'mellow', ...defaults } = 
   const pre = reactPre(deps, { ...defaults, styles: reactPreStyles, theme: reactPreThemes[themeName] })
   deps = { ...deps, ...pre }
 
-  const formula = reactFormula(deps, { ...defaults, styles: reactFormulaStyles, theme: reactFormulaThemes[themeName] })
+  const formula = reactFormula(deps, { ...defaults, styles: reactFormulaStyles, theme: reactFormulaThemes[themeName] ? reactFormulaThemes[themeName] : reactFormulaThemes.yellow })
   deps = { ...deps, formula }
 
   const args = [ deps, { ...defaults, styles: gridironStyles, theme: gridironThemes[themeName] } ]
