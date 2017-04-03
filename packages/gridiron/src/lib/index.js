@@ -1,6 +1,6 @@
 import gridironReact from 'gridiron-react'
-import gridironStyles from 'gridiron-styles'
-import * as gridironThemes from 'gridiron-themes'
+import gridironStyles from '@tixinc/gridiron-styles'
+import * as gridironThemes from '@tixinc/gridiron-themes'
 import reactFormula from 'react-formula'
 import reactFormulaStyles from 'react-formula-styles'
 import * as reactFormulaThemes from 'react-formula-themes'
