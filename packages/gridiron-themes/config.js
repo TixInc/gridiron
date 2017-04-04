@@ -17,7 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 import { createLogger } from 'bunyan'
 
 */
-var libName = exports.libName = 'gridiron-styles';
+var libName = exports.libName = '@tixinc/gridiron-styles';
 var noop = exports.noop = function noop() {};
 var IS_HOT = exports.IS_HOT = process.env.NODE_ENV === 'hot';
 var IS_DEV = exports.IS_DEV = process.env.NODE_ENV !== 'production';

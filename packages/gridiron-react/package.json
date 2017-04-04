@@ -1,5 +1,5 @@
 {
-  "name": "gridiron-react",
+  "name": "@tixinc/gridiron-react",
   "version": "0.23.0",
   "description": "React view components for gridiron.",
   "main": "lib/index.js",
@@ -19,17 +19,14 @@
   "dependencies": {
     "babel-runtime": "^6.18.0",
     "bluebird": "^3.4.1",
+    "chai": "^3.5.0",
     "classnames": "^2.2.5",
     "co": "^4.6.0",
-    "detect-resize": "^0.1.5",
     "dom-helpers": "^2.4.0",
-    "gridiron-core": "^0.19.1",
     "most": "^1.0.0",
     "pure-stamp": "^0.1.13",
     "raf": "^3.2.0",
-    "react-pub-sub": "^0.16.1",
-    "react-stamp": "^0.5.1",
-    "solvent": "^0.16.1"
+    "react-stamp": "^0.5.1"
   },
   "devDependencies": {
     "babel-cli": "latest",

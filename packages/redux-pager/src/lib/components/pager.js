@@ -1,5 +1,4 @@
 import cn from 'classnames'
-import solvent from 'solvent'
 
 const should = require('chai').should()
 
@@ -17,6 +16,7 @@ function nextDirection(direction) {
 export default function pager (pure) {
   const { React, PropTypes, cloneElement, connect, shallowCompare, Immutable, defaults } = pure
   const { styles, theme } = defaults
+  
   const desktopStyles = [ styles.desktop, theme.desktop ]
   const mobileStyles = [ styles.mobile, theme.mobile ]
 
