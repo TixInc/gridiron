@@ -3,7 +3,7 @@ import path from 'path'
 import { createLogger } from 'bunyan'
 
 */
-export const libName = 'gridiron-styles'
+export const libName = '@tixinc/gridiron-styles'
 export const noop = () => {}
 export const IS_HOT = process.env.NODE_ENV === 'hot'
 export const IS_DEV = process.env.NODE_ENV !== 'production'

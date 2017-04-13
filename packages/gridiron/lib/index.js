@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reduxPager = exports.reactPreThemes = exports.reactPreStyles = exports.reactPre = exports.reactFormulaThemes = exports.reactFormulaStyles = exports.reactFormula = exports.gridironThemes = exports.gridironStyles = exports.gridironReact = undefined;
+exports.reduxPager = exports.reactFormulaThemes = exports.reactFormulaStyles = exports.reactFormula = exports.gridironThemes = exports.gridironStyles = exports.gridironReact = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = gridiron;
 
-var _gridironReact = require('gridiron-react');
+var _gridironReact = require('@tixinc/gridiron-react');
 
 var _gridironReact2 = _interopRequireDefault(_gridironReact);
 
@@ -21,31 +21,19 @@ var _gridironThemes = require('@tixinc/gridiron-themes');
 
 var gridironThemes = _interopRequireWildcard(_gridironThemes);
 
-var _reactFormula = require('react-formula');
+var _reactFormula = require('@tixinc/react-formula');
 
 var _reactFormula2 = _interopRequireDefault(_reactFormula);
 
-var _reactFormulaStyles = require('react-formula-styles');
+var _reactFormulaStyles = require('@tixinc/react-formula-styles');
 
 var _reactFormulaStyles2 = _interopRequireDefault(_reactFormulaStyles);
 
-var _reactFormulaThemes = require('react-formula-themes');
+var _reactFormulaThemes = require('@tixinc/react-formula-themes');
 
 var reactFormulaThemes = _interopRequireWildcard(_reactFormulaThemes);
 
-var _reactPre = require('react-pre');
-
-var _reactPre2 = _interopRequireDefault(_reactPre);
-
-var _reactPreStyles = require('react-pre-styles');
-
-var _reactPreStyles2 = _interopRequireDefault(_reactPreStyles);
-
-var _reactPreThemes = require('react-pre-themes');
-
-var reactPreThemes = _interopRequireWildcard(_reactPreThemes);
-
-var _reduxPager = require('redux-pager');
+var _reduxPager = require('@tixinc/redux-pager');
 
 var _reduxPager2 = _interopRequireDefault(_reduxPager);
 
@@ -61,9 +49,6 @@ exports.gridironThemes = gridironThemes;
 exports.reactFormula = _reactFormula2.default;
 exports.reactFormulaStyles = _reactFormulaStyles2.default;
 exports.reactFormulaThemes = reactFormulaThemes;
-exports.reactPre = _reactPre2.default;
-exports.reactPreStyles = _reactPreStyles2.default;
-exports.reactPreThemes = reactPreThemes;
 exports.reduxPager = _reduxPager2.default;
 function gridiron(deps) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -72,20 +57,15 @@ function gridiron(deps) {
       themeName = _ref$themeName === undefined ? 'mellow' : _ref$themeName,
       defaults = _objectWithoutProperties(_ref, ['themeName']);
 
-  var pre = (0, _reactPre2.default)(deps, _extends({}, defaults, { styles: _reactPreStyles2.default, theme: reactPreThemes[themeName] }));
-  deps = _extends({}, deps, pre);
-
-  var formula = (0, _reactFormula2.default)(deps, _extends({}, defaults, { styles: _reactFormulaStyles2.default, theme: reactFormulaThemes[themeName] ? reactFormulaThemes[themeName] : reactFormulaThemes.yellow }));
+  var formula = (0, _reactFormula2.default)(deps, _extends({}, defaults, { styles: _reactFormulaStyles2.default, theme: reactFormulaThemes[themeName] ? reactFormulaThemes[themeName] : reactFormulaThemes.mellow }));
   deps = _extends({}, deps, { formula: formula });
 
   var args = [deps, _extends({}, defaults, { styles: _gridironStyles2.default, theme: gridironThemes[themeName] })];
 
-  return _extends({}, pre, _gridironReact2.default.apply(undefined, args), { styles: _gridironStyles2.default,
+  return _extends({}, _gridironReact2.default.apply(undefined, args), { styles: _gridironStyles2.default,
     themes: gridironThemes
   }, _reduxPager2.default.apply(undefined, args), { formula: formula,
     reactFormulaStyles: _reactFormulaStyles2.default,
-    reactFormulaThemes: reactFormulaThemes,
-    reactPreStyles: _reactPreStyles2.default,
-    reactPreThemes: reactPreThemes
+    reactFormulaThemes: reactFormulaThemes
   });
 }
