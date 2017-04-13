@@ -28,7 +28,7 @@
     "raf": "^3.2.0"
   },
   "devDependencies": {
-    "babel-cli": "latest",
+    "babel-cli": "^6.24.1",
     "babel-core": "latest",
     "babel-eslint": "latest",
     "babel-loader": "latest",
