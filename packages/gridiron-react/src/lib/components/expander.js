@@ -18,7 +18,7 @@ export default function expander (pure) {
     <span style={wrapStyle}>
       {props.visible ? (
         <span>
-          <button style={expanderButtonStyle} onClick={props.handleExpand}>
+          <button style={expanderButtonStyle} onClick={props.handleExpand} type="button">
             <i className={cn(`fa fa-${(props.expanded ? 'minus' : 'plus')}-square`, props.theme.expander)} />
           </button>
         </span>

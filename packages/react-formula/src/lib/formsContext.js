@@ -70,7 +70,11 @@ export default function formsContext (pure) {
                 case 'checkbox':
                   const resolved = checked === true || checked == 'true' || checked == 'checked'
                   //console.info('GET CHECKBOX', this.props.name, checked, resolved)
-                  return resolved
+                  if (resolved) {
+                    return value === 'on' || value
+                  }
+
+                  return false
                 default:
                   //console.info('GET DEFAULT', this.props.name, value)
                   return value

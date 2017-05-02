@@ -374,9 +374,9 @@ export default function grid (pure) {
             { key: documentIndex
             , documentIndex
             , children
-            , onClick: (e) => {
+            , onClick: (event) => {
                 if(onDocumentClick)
-                  onDocumentClick({ documentIndex, documentID })
+                  onDocumentClick({ documentIndex, documentID, event })
                 return true
               }
             , className: isPrimitive ? selectStyles('primitive') : selectStyles('sectional')

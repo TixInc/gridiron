@@ -81,6 +81,7 @@ export default function column(pure) {
                     <button
                       className={cn(styles.filterButton, theme.filterButton)}
                       onClick={() => this.setState({ paneVisible: !paneVisible })}
+                      type="button"
                     >
                       <i className={`fa fa-filter${''}`} />
                     </button>
@@ -93,7 +94,7 @@ export default function column(pure) {
                     </span>
                   ) : null}
                   {sort && sort.get('cols', []).includes(columnID) ? (
-                    <button onClick={() => actions.sort(columnID)}>
+                    <button onClick={() => actions.sort(columnID)} type="button">
                       <SortIcon direction={sort.getIn([ 'direction', columnID ])} />
                     </button>
                   ) : null}

@@ -14,6 +14,10 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _isFunction = require('lodash/isFunction');
+
+var _isFunction2 = _interopRequireDefault(_isFunction);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -115,6 +119,20 @@ function pager(pure) {
     page: 0,
     documentsPerPage: null,
     documentsPerPageOptions: [1, 2, 3, 4, 5, 10, 25, 50, 100, 500, 1000, 'All'],
+    filterDocumentData: function filterDocumentData(documentData, filterState) {
+      if (filterState) {
+        var anyFiltered = false;
+        var filtered = documentData.filter(function (datum, documentID) {
+          var value = Object.keys(filterState).some(function (columnID) {
+            return filterState[columnID](documentID) === true;
+          });
+          if (value) anyFiltered = true;
+          return value;
+        });
+        return anyFiltered ? filtered : documentData;
+      }
+      return documentData;
+    },
     typeSingular: 'document',
     typePlural: 'documents',
     content: { FastBackward: function FastBackward(_ref) {
@@ -250,7 +268,8 @@ function pager(pure) {
           documentsPerPageOptions = _props.documentsPerPageOptions,
           createSortKeys = _props.createSortKeys,
           createSortKeyComparator = _props.createSortKeyComparator,
-          childProps = _objectWithoutProperties(_props, ['columns', 'map', 'documentsPerPageOptions', 'createSortKeys', 'createSortKeyComparator']);
+          filterDocumentData = _props.filterDocumentData,
+          childProps = _objectWithoutProperties(_props, ['columns', 'map', 'documentsPerPageOptions', 'createSortKeys', 'createSortKeyComparator', 'filterDocumentData']);
 
       return React.createElement(PagerDataFilter, _extends({}, childProps, {
 
@@ -271,20 +290,7 @@ function pager(pure) {
           }
         }
         /** CALLED BY FILTER STREAM */
-        , filterDocumentData: this.props.filterStream ? function (documentData, filterState) {
-          if (filterState) {
-            var anyFiltered = false;
-            var filtered = documentData.filter(function (datum, documentID) {
-              var value = Object.keys(filterState).some(function (columnID) {
-                return filterState[columnID](documentID) === true;
-              });
-              if (value) anyFiltered = true;
-              return value;
-            });
-            return anyFiltered ? filtered : documentData;
-          }
-          return documents;
-        } : null
+        , filterDocumentData: (0, _isFunction2.default)(filterDocumentData) && (0, _isFunction2.default)(this.props.filterStream) ? filterDocumentData : null
         /** MAP CELL AND SORT DATA AND ADD TO DATA CONSTRUCT */
 
         , mapData: function mapData(documentData, columnData, access) {
@@ -553,13 +559,13 @@ function pager(pure) {
         { className: (0, _classnames2.default)(styles.pagerControls, theme.pagerControls) },
         React.createElement(
           'button',
-          { onClick: actions.fastBackward, className: buttonClass, disabled: status.get('page') === 0 },
+          { onClick: actions.fastBackward, className: buttonClass, disabled: status.get('page') === 0, type: 'button' },
           React.createElement(content.FastBackward, this.props)
         ),
         ' ',
         React.createElement(
           'button',
-          { onClick: actions.stepBackward, className: buttonClass, disabled: status.get('page') === 0 },
+          { onClick: actions.stepBackward, className: buttonClass, disabled: status.get('page') === 0, type: 'button' },
           React.createElement(content.StepBackward, this.props)
         ),
         ' ',
@@ -571,13 +577,13 @@ function pager(pure) {
         ' ',
         React.createElement(
           'button',
-          { onClick: actions.stepForward, className: buttonClass, disabled: status.get('page') === status.get('pages') - 1 },
+          { onClick: actions.stepForward, className: buttonClass, disabled: status.get('page') === status.get('pages') - 1, type: 'button' },
           React.createElement(content.StepForward, this.props)
         ),
         ' ',
         React.createElement(
           'button',
-          { onClick: actions.fastForward, className: buttonClass, disabled: status.get('page') === status.get('pages') - 1 },
+          { onClick: actions.fastForward, className: buttonClass, disabled: status.get('page') === status.get('pages') - 1, type: 'button' },
           React.createElement(content.FastForward, this.props)
         )
       );

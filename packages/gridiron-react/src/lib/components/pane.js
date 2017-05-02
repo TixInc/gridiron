@@ -22,7 +22,7 @@ export default function pane (pure) {
         */
       }
     , render() {
-        const sample = Array.from(Array(20).fill(1))
+        // const sample = Array.from(Array(20).fill(1))
         const { styles, theme, enabled, children } = this.props
         //const { transition } = this.state
         const className = cn( styles.pane

@@ -89,6 +89,7 @@ export default function dock (pure) {
                 <button
                   className={cn(styles.dockButton, theme.dockButton)}
                   onClick={() => this.toggle()}
+                  type="button"
                 >
                   {toggleContent}
                 </button>

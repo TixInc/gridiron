@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import isFunction from 'lodash/isFunction'
 
 const should = require('chai').should()
 
@@ -90,6 +91,21 @@ export default function pager (pure) {
                         , page: 0
                         , documentsPerPage: null
                         , documentsPerPageOptions: [ 1, 2, 3, 4, 5, 10, 25, 50, 100, 500, 1000, 'All' ]
+                        , filterDocumentData: (documentData, filterState) => {
+                            if(filterState) {
+                              let anyFiltered = false
+                              const filtered = documentData.filter((datum, documentID) => {
+                                const value = Object.keys(filterState).some(columnID => (
+                                  filterState[columnID](documentID) === true
+                                ))
+                                if(value)
+                                  anyFiltered = true
+                                return value
+                              })
+                              return anyFiltered ? filtered : documentData
+                            }
+                            return documentData
+                          }
                         , typeSingular: 'document'
                         , typePlural: 'documents'
                         , content:  { FastBackward: ({ status, ...props }) => <i className={'fa fa-fast-backward'} />
@@ -144,8 +160,10 @@ export default function pager (pure) {
               , documentsPerPageOptions
               , createSortKeys
               , createSortKeyComparator
+              , filterDocumentData
               , ...childProps
-              } = this.props
+            } = this.props
+            
         return (
           <PagerDataFilter
             {...childProps}
@@ -165,21 +183,7 @@ export default function pager (pure) {
               }
             }}
             /** CALLED BY FILTER STREAM */
-            filterDocumentData={this.props.filterStream ? (documentData, filterState) => {
-              if(filterState) {
-                let anyFiltered = false
-                const filtered = documentData.filter((datum, documentID) => {
-                  const value = Object.keys(filterState).some(columnID => (
-                    filterState[columnID](documentID) === true
-                  ))
-                  if(value)
-                    anyFiltered = true
-                  return value
-                })
-                return anyFiltered ? filtered : documentData
-              }
-              return documents
-            } : null}
+            filterDocumentData={isFunction(filterDocumentData) && isFunction(this.props.filterStream) ? filterDocumentData : null}
             /** MAP CELL AND SORT DATA AND ADD TO DATA CONSTRUCT */
 
             mapData={(documentData, columnData, access) => {
@@ -399,21 +403,21 @@ export default function pager (pure) {
         const buttonClass = cn(styles.pagerButton, theme.pagerButton)
         return (
           <span className={cn(styles.pagerControls, theme.pagerControls)}>
-            <button onClick={actions.fastBackward} className={buttonClass} disabled={status.get('page') === 0}>
+            <button onClick={actions.fastBackward} className={buttonClass} disabled={status.get('page') === 0} type="button">
               <content.FastBackward {...this.props} />
             </button>
             {' '}
-            <button onClick={actions.stepBackward} className={buttonClass} disabled={status.get('page') === 0}>
+            <button onClick={actions.stepBackward} className={buttonClass} disabled={status.get('page') === 0} type="button">
               <content.StepBackward {...this.props} />
             </button>
             {' '}
             {children ? <span className={cn(styles.pagerControlsChildren, theme.pagerControlsChildren)}>{children}</span> : null}
             {' '}
-            <button onClick={actions.stepForward} className={buttonClass} disabled={status.get('page') === status.get('pages') - 1}>
+            <button onClick={actions.stepForward} className={buttonClass} disabled={status.get('page') === status.get('pages') - 1} type="button">
               <content.StepForward {...this.props} />
             </button>
             {' '}
-            <button onClick={actions.fastForward} className={buttonClass} disabled={status.get('page') === status.get('pages') - 1}>
+            <button onClick={actions.fastForward} className={buttonClass} disabled={status.get('page') === status.get('pages') - 1} type="button">
               <content.FastForward {...this.props} />
             </button>
           </span>

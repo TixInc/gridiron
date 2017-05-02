@@ -195,7 +195,7 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
                 , formName
                 , inputs
                 , onSubmit
-                } = this.props
+              } = this.props
 
           return (
             <form
@@ -329,8 +329,23 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
 
     const subscribe = (formNames, cb) => {
       console.warn('SUBSCRIBE', formNames)
-      return formNames.map(formName => subscribeForm(formName, (...args) => {
-        cb(formNames.map(name => currentState.get(name)))
+      return formNames.map(formName => subscribeForm(formName, (formState) => {
+        let nextState = Immutable.List()
+        let prevState = Immutable.List()
+
+        formNames.forEach(name => {
+          const currState = currentState.get(name, null)
+
+          if (name === formName) {
+            nextState = nextState.push(formState)
+          } else {
+            nextState = nextState.push(currState)
+          }
+          
+          prevState = prevState.push(currState)
+        })
+        
+        cb(prevState, nextState)
       }))
     }
 
