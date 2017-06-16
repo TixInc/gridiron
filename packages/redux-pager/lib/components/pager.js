@@ -170,6 +170,7 @@ function pager(pure) {
         var status = _ref7.status,
             props = _objectWithoutProperties(_ref7, ['status']);
 
+        var lastIndex = status.get('lastIndex');
         return React.createElement(
           'span',
           { className: _classnames2.default.apply(undefined, [styles.documentStatus, theme.documentStatus].concat(desktopStyles)) },
@@ -178,7 +179,7 @@ function pager(pure) {
           ' ',
           (status.get('startIndex') + 1).toLocaleString(),
           ' through ',
-          status.get('lastIndex').toLocaleString(),
+          lastIndex ? lastIndex.toLocaleString() : 0,
           ' (',
           status.get('totalDocuments').toLocaleString(),
           ' total)'

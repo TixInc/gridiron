@@ -106,11 +106,13 @@ export default function pager (pure) {
                                           {(status.get('page') + 1).toLocaleString()} / {status.get('pages')}
                                         </span>
                                       )
-                                    , DocumentStatus: ({ status, ...props }) => (
+                                    , DocumentStatus: ({ status, ...props }) => {
+                                      var lastIndex = status.get('lastIndex')
+                                      return (
                                         <span className={cn(styles.documentStatus, theme.documentStatus, ...desktopStyles)}>
-                                          Showing {props.typePlural} {(status.get('startIndex') + 1).toLocaleString()} through {status.get('lastIndex').toLocaleString()} ({status.get('totalDocuments').toLocaleString()} total)
+                                          Showing {props.typePlural} {(status.get('startIndex') + 1).toLocaleString()} through {lastIndex ? lastIndex.toLocaleString() : 0} ({status.get('totalDocuments').toLocaleString()} total)
                                         </span>
-                                      )
+                                      )}
                                     , DocumentStatusMobile: ({ status, ...props }) => (
                                         <span className={cn(styles.documentStatus, theme.documentStatus, ...mobileStyles)}>
                                           {(status.get('startIndex') + 1).toLocaleString()} - {status.get('lastIndex').toLocaleString()} / {status.get('totalDocuments').toLocaleString()}
