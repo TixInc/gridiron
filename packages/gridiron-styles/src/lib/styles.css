@@ -326,7 +326,7 @@
 }
 
 .gridFooter > * {
-  display: inline-flex;
+/*  display: inline-flex;*/
   flex-direction: row;
   align-items: space-between;
   justify-content: space-between;
