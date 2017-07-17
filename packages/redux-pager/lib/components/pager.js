@@ -170,7 +170,7 @@ function pager(pure) {
         var status = _ref7.status,
             props = _objectWithoutProperties(_ref7, ['status']);
 
-        var lastIndex = status.get('lastIndex');
+        var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0;
         return React.createElement(
           'span',
           { className: _classnames2.default.apply(undefined, [styles.documentStatus, theme.documentStatus].concat(desktopStyles)) },
@@ -179,7 +179,7 @@ function pager(pure) {
           ' ',
           (status.get('startIndex') + 1).toLocaleString(),
           ' through ',
-          lastIndex ? lastIndex.toLocaleString() : 0,
+          lastIndex,
           ' (',
           status.get('totalDocuments').toLocaleString(),
           ' total)'
@@ -189,12 +189,13 @@ function pager(pure) {
         var status = _ref8.status,
             props = _objectWithoutProperties(_ref8, ['status']);
 
+        var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0;
         return React.createElement(
           'span',
           { className: _classnames2.default.apply(undefined, [styles.documentStatus, theme.documentStatus].concat(mobileStyles)) },
           (status.get('startIndex') + 1).toLocaleString(),
           ' - ',
-          status.get('lastIndex').toLocaleString(),
+          lastIndex,
           ' / ',
           status.get('totalDocuments').toLocaleString()
         );

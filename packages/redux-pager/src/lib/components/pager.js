@@ -107,17 +107,19 @@ export default function pager (pure) {
                                         </span>
                                       )
                                     , DocumentStatus: ({ status, ...props }) => {
-                                      var lastIndex = status.get('lastIndex')
+                                      var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0
                                       return (
                                         <span className={cn(styles.documentStatus, theme.documentStatus, ...desktopStyles)}>
-                                          Showing {props.typePlural} {(status.get('startIndex') + 1).toLocaleString()} through {lastIndex ? lastIndex.toLocaleString() : 0} ({status.get('totalDocuments').toLocaleString()} total)
+                                          Showing {props.typePlural} {(status.get('startIndex') + 1).toLocaleString()} through {lastIndex} ({status.get('totalDocuments').toLocaleString()} total)
                                         </span>
                                       )}
-                                    , DocumentStatusMobile: ({ status, ...props }) => (
+                                    , DocumentStatusMobile: ({ status, ...props }) => {
+                                      var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0
+                                      return (
                                         <span className={cn(styles.documentStatus, theme.documentStatus, ...mobileStyles)}>
-                                          {(status.get('startIndex') + 1).toLocaleString()} - {status.get('lastIndex').toLocaleString()} / {status.get('totalDocuments').toLocaleString()}
+                                          {(status.get('startIndex') + 1).toLocaleString()} - {lastIndex} / {status.get('totalDocuments').toLocaleString()}
                                         </span>
-                                      )
+                                      )}
                                     , DocumentCount: ({ status, ...props }) => (
                                         <span className={cn(styles.documentCount, theme.documentCount, ...desktopStyles)}>
                                           {status.totalDocuments.toLocaleString()} {status.get('totalDocuments') === 1 ? props.typeSingular : props.typePlural}
