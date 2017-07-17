@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/redux-pager",
-  "version": "0.23.1",
+  "version": "0.23.2",
   "description": "Lightweight composable Redux pagination component.",
   "main": "lib/index.js",
   "files": [
