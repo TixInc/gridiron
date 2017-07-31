@@ -119,9 +119,7 @@ export default function grid (pure) {
       )
     , DocumentFooter: ({ children, ...props }) => (
         <div className={selectStyles('documentFooter')}>
-          <span className={selectStyles('documentFooterContent')}>
-            {children}
-          </span>
+          {children}
         </div>
       )
     , Cell: ({ children, ...props }) => (
