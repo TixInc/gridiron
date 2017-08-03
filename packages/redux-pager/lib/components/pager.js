@@ -85,7 +85,7 @@ function pager(pure) {
           case 'string':
             return currentKey;
           default:
-            return currentKey.toString();
+            if (currentKey === null) return '';else return currentKey.toString();
         }
       });
     }
