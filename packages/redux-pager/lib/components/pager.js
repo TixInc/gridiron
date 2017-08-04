@@ -352,7 +352,7 @@ function pager(pure) {
               access.page = access.page + 1;
             },
             fastForward: function fastForward() {
-              access.page = access.page - 1;
+              access.page = status.get('pages') - 1;
             },
             select: function select(x) {
               access.page = x;

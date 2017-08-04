@@ -244,7 +244,7 @@ export default function pager (pure) {
                 { fastBackward: () => { access.page = 0 }
                 , stepBackward: () => { access.page = access.page - 1 }
                 , stepForward: () => { access.page = access.page + 1 }
-                , fastForward: () => { access.page = access.page - 1 }
+                , fastForward: () => { access.page = status.get('pages') - 1 }
                 , select: x => { access.page = x }
                 , documentsPerPage: documentsPerPage => {
                     access.merge( { documentsPerPage
