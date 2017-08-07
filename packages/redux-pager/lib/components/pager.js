@@ -178,11 +178,10 @@ function pager(pure) {
           props.typePlural,
           ' ',
           (status.get('startIndex') + 1).toLocaleString(),
-          ' through ',
+          ' - ',
           lastIndex,
-          ' (',
-          status.get('totalDocuments').toLocaleString(),
-          ' total)'
+          ' of ',
+          status.get('totalDocuments').toLocaleString()
         );
       },
       DocumentStatusMobile: function DocumentStatusMobile(_ref8) {
@@ -465,7 +464,8 @@ function pager(pure) {
       });
     },
     componentWillUnmount: function componentWillUnmount() {
-      if (this.unsubscribe) this.unsubscribe();
+      // if(this.unsubscribe)
+      //   this.unsubscribe()
     },
     render: function render() {
       var _props4 = this.props,
@@ -529,7 +529,7 @@ function pager(pure) {
           return React.createElement(PagerStatus, _extends({}, props, childProps, { styleName: 'pagerPageStatus', Content: content.PageStatus, ContentMobile: content.PageStatusMobile }));
         },
         DocumentStatus: function DocumentStatus(props) {
-          return React.createElement(PagerStatus, _extends({}, props, childProps, { styleName: 'pagerDocumentStatus', Content: content.DocumentStatus, ContentMobile: content.DocumentStatusMobile }));
+          return React.createElement(PagerStatus, _extends({}, props, childProps, { styleName: 'pagerDocumentStatus', Content: content.DocumentStatus, ContentMobile: content.DocumentStatusMobile, style: props.style }));
         },
         DocumentCount: function DocumentCount(props) {
           return React.createElement(PagerStatus, _extends({}, props, childProps, { styleName: 'pagerDocumentCount', Content: content.DocumentCount, ContentMobile: content.DocumentCountMobile }));
@@ -599,22 +599,30 @@ function pager(pure) {
           theme = _props7.theme;
 
       var documentsPerPage = status.get('documentsPerPage');
+      var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0;
       return typeof documentsPerPage === 'number' && documentsPerPage > 0 ? React.createElement(
-        'select',
-        {
-          value: status.get('page'),
-          onChange: function onChange(x) {
-            return actions.select(parseInt(x.target.value));
+        'div',
+        null,
+        'Page',
+        React.createElement(
+          'select',
+          {
+            value: status.get('page'),
+            onChange: function onChange(x) {
+              return actions.select(parseInt(x.target.value));
+            },
+            className: (0, _classnames2.default)(styles.pagerSelect, theme.pagerSelect)
           },
-          className: (0, _classnames2.default)(styles.pagerSelect, theme.pagerSelect)
-        },
-        Array.from(Array(status.get('pages')).keys()).map(function (x) {
-          return React.createElement(
-            'option',
-            { key: x, value: x },
-            content.selectOption(_extends({}, _this4.props, { index: x }))
-          );
-        })
+          Array.from(Array(status.get('pages')).keys()).map(function (x) {
+            return React.createElement(
+              'option',
+              { key: x, value: x },
+              content.selectOption(_extends({}, _this4.props, { index: x }))
+            );
+          })
+        ),
+        'of ',
+        lastIndex
       ) : React.createElement(
         'span',
         null,
@@ -680,11 +688,12 @@ function pager(pure) {
           actions = _props9.actions,
           content = _props9.content,
           styles = _props9.styles,
-          theme = _props9.theme;
+          theme = _props9.theme,
+          style = _props9.style;
 
       return React.createElement(
-        'span',
-        { className: (0, _classnames2.default)(styles[styleName], theme[styleName]) },
+        'div',
+        { className: (0, _classnames2.default)(styles[styleName], theme[styleName]), style: style },
         React.createElement(Content, this.props),
         React.createElement(ContentMobile, this.props)
       );

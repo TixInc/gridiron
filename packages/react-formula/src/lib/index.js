@@ -330,7 +330,8 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
     const subscribe = (formNames, cb) => {
       console.warn('SUBSCRIBE', formNames)
       return formNames.map(formName => subscribeForm(formName, (...args) => {
-        cb(formNames.map(name => currentState.get(name)))
+        let formState = formNames.map(name => currentState.get(name))
+        cb(formState)
       }))
     }
 

@@ -113,7 +113,7 @@ export default function pager (pure) {
                                       var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0
                                       return (
                                         <span className={cn(styles.documentStatus, theme.documentStatus, ...desktopStyles)}>
-                                          Showing {props.typePlural} {(status.get('startIndex') + 1).toLocaleString()} through {lastIndex} ({status.get('totalDocuments').toLocaleString()} total)
+                                          Showing {props.typePlural} {(status.get('startIndex') + 1).toLocaleString()} - {lastIndex} of {status.get('totalDocuments').toLocaleString()}
                                         </span>
                                       )}
                                     , DocumentStatusMobile: ({ status, ...props }) => {
@@ -337,8 +337,8 @@ export default function pager (pure) {
           this.unsubscribe = filterStream(filterState => this.setState({ filterState }))
       }
     , componentWillUnmount() {
-        if(this.unsubscribe)
-          this.unsubscribe()
+        // if(this.unsubscribe)
+        //   this.unsubscribe()
       }
     , render() {
         const { documentData
@@ -390,7 +390,7 @@ export default function pager (pure) {
                         , Select: props => <PagerSelect {...props} {...childProps} content={content} />
                         , DocumentsPerPage: props => <PagerDocumentsPerPage {...props} {...childProps} content={content} />
                         , PageStatus: props => <PagerStatus {...props} {...childProps} styleName="pagerPageStatus" Content={content.PageStatus} ContentMobile={content.PageStatusMobile} />
-                        , DocumentStatus: props => <PagerStatus {...props} {...childProps} styleName="pagerDocumentStatus" Content={content.DocumentStatus} ContentMobile={content.DocumentStatusMobile} />
+                        , DocumentStatus: props => <PagerStatus {...props} {...childProps} styleName="pagerDocumentStatus" Content={content.DocumentStatus} ContentMobile={content.DocumentStatusMobile} style={props.style} />
                         , DocumentCount: props => <PagerStatus {...props} {...childProps} styleName="pagerDocumentCount" Content={content.DocumentCount} ContentMobile={content.DocumentCountMobile} />
                         })
       }
@@ -435,7 +435,10 @@ export default function pager (pure) {
     , render() {
         const { status, actions, content, styles, theme } = this.props
         const documentsPerPage = status.get('documentsPerPage')
+        var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0
         return typeof documentsPerPage === 'number' && documentsPerPage > 0 ? (
+          <div>
+          Page 
           <select
             value={status.get('page')}
             onChange={x =>  actions.select(parseInt(x.target.value))}
@@ -443,6 +446,8 @@ export default function pager (pure) {
           >
             {Array.from(Array(status.get('pages')).keys()).map(x => <option key={x} value={x}>{content.selectOption({ ...this.props, index: x })}</option>)}
           </select>
+           of {lastIndex}
+          </div>
         ) : <span>All</span>
       }
     }
@@ -480,12 +485,12 @@ export default function pager (pure) {
     { displayName: 'PagerStatus'
     , defaultProps: defaults
     , render() {
-        const { styleName, Content, ContentMobile, className, status, actions, content, styles, theme } = this.props
+        const { styleName, Content, ContentMobile, className, status, actions, content, styles, theme, style } = this.props
         return (
-          <span className={cn(styles[styleName], theme[styleName])}>
+          <div className={cn(styles[styleName], theme[styleName])} style={style}>
             <Content {...this.props} />
             <ContentMobile {...this.props} />
-          </span>
+          </div>
         )
       }
     }
