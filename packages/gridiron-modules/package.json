@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/gridiron-modules",
-  "version": "0.23.1",
+  "version": "0.23.8",
   "description": "Factory that exports modules that gridiron depends on.",
   "main": "index.js",
   "repository": {
