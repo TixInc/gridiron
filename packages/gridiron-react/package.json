@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/gridiron-react",
-  "version": "0.23.0",
+  "version": "0.23.1",
   "description": "React view components for gridiron.",
   "main": "lib/index.js",
   "scripts": {

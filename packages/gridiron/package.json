@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/gridiron",
-  "version": "0.23.6",
+  "version": "0.23.1",
   "description": "Feature-Packed Grid Framework",
   "main": "lib/index.js",
   "files": [
@@ -37,13 +37,13 @@
     "upgrade": "ncu -a && npm update"
   },
   "dependencies": {
-    "@tixinc/gridiron-react": "^0.23.0",
-    "@tixinc/gridiron-styles": "^0.23.0",
-    "@tixinc/gridiron-themes": "^0.23.0",
-    "@tixinc/react-formula": "^0.16.1",
-    "@tixinc/react-formula-styles": "^0.16.1",
-    "@tixinc/react-formula-themes": "^0.16.1",
-    "@tixinc/redux-pager": "^0.23.0",
+    "@tixinc/gridiron-react": "^0.23.1",
+    "@tixinc/gridiron-styles": "^0.23.1",
+    "@tixinc/gridiron-themes": "^0.23.1",
+    "@tixinc/react-formula": "^0.23.1",
+    "@tixinc/react-formula-styles": "^0.23.1",
+    "@tixinc/react-formula-themes": "^0.23.1",
+    "@tixinc/redux-pager": "^0.23.1",
     "babel-core": "^6.9.0",
     "babel-runtime": "^6.9.0",
     "chai": "^3.5.0",

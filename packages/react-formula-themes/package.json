@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/react-formula-themes",
-  "version": "0.16.1",
+  "version": "0.23.1",
   "description": "React Component Styles for CSS Modules",
   "main": "lib/index.js",
   "scripts": {
