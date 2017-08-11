@@ -70,9 +70,8 @@ function pager(pure) {
     typeSingular: PropTypes.string.isRequired,
     typePlural: PropTypes.string.isRequired,
     content: PropTypes.shape(contentShape).isRequired
-  };
-  /** CREATES SORT KEYS FOR A DOCUMENT */
-  var defaultProps = _extends({ createSortKeys: function createSortKeys(cells, access) {
+    /** CREATES SORT KEYS FOR A DOCUMENT */
+  };var defaultProps = _extends({ createSortKeys: function createSortKeys(cells, access) {
       var sort = access.sort;
       return sort.get('cols').filter(function (columnID) {
         return typeof sort.getIn(['direction', columnID]) === 'string';
