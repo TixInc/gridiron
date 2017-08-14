@@ -215,7 +215,7 @@
 .document.odd {
   color: var(--control-fg);
   background-color: var(--control-bg);
-  border-bottom: 1px groove var(--control-border);
+/*  border-bottom: 1px groove var(--control-border);*/
   cursor: pointer;
 }
 
