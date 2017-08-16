@@ -70,8 +70,9 @@ function pager(pure) {
     typeSingular: PropTypes.string.isRequired,
     typePlural: PropTypes.string.isRequired,
     content: PropTypes.shape(contentShape).isRequired
-    /** CREATES SORT KEYS FOR A DOCUMENT */
-  };var defaultProps = _extends({ createSortKeys: function createSortKeys(cells, access) {
+  };
+  /** CREATES SORT KEYS FOR A DOCUMENT */
+  var defaultProps = _extends({ createSortKeys: function createSortKeys(cells, access) {
       var sort = access.sort;
       return sort.get('cols').filter(function (columnID) {
         return typeof sort.getIn(['direction', columnID]) === 'string';
@@ -598,7 +599,7 @@ function pager(pure) {
           theme = _props7.theme;
 
       var documentsPerPage = status.get('documentsPerPage');
-      var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0;
+      var pages = status.get('pages');
       return typeof documentsPerPage === 'number' && documentsPerPage > 0 ? React.createElement(
         'div',
         null,
@@ -612,7 +613,7 @@ function pager(pure) {
             },
             className: (0, _classnames2.default)(styles.pagerSelect, theme.pagerSelect)
           },
-          Array.from(Array(status.get('pages')).keys()).map(function (x) {
+          Array.from(Array(pages).keys()).map(function (x) {
             return React.createElement(
               'option',
               { key: x, value: x },
@@ -621,7 +622,7 @@ function pager(pure) {
           })
         ),
         'of ',
-        lastIndex
+        pages
       ) : React.createElement(
         'span',
         null,

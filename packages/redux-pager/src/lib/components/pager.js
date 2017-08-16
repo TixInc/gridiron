@@ -435,7 +435,7 @@ export default function pager (pure) {
     , render() {
         const { status, actions, content, styles, theme } = this.props
         const documentsPerPage = status.get('documentsPerPage')
-        var lastIndex = status.get('lastIndex') ? status.get('lastIndex').toLocaleString() : 0
+        const pages = status.get('pages')
         return typeof documentsPerPage === 'number' && documentsPerPage > 0 ? (
           <div>
           Page 
@@ -444,9 +444,9 @@ export default function pager (pure) {
             onChange={x =>  actions.select(parseInt(x.target.value))}
             className={cn(styles.pagerSelect, theme.pagerSelect)}
           >
-            {Array.from(Array(status.get('pages')).keys()).map(x => <option key={x} value={x}>{content.selectOption({ ...this.props, index: x })}</option>)}
+            {Array.from(Array(pages).keys()).map(x => <option key={x} value={x}>{content.selectOption({ ...this.props, index: x })}</option>)}
           </select>
-           of {lastIndex}
+           of {pages}
           </div>
         ) : <span>All</span>
       }
