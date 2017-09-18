@@ -36,9 +36,9 @@ var getStyleLoaders = function getStyleLoaders(name) {
   var cssModulesLoader = 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss';
   var cssLoader = 'css!postcss';
   //const lessLoader = `${cssLoader}!less`
-  return [{ test: /\.css$/, loader: /* useExtract ? extractText(cssModulesLoader) :*/inlineStyleLoader(cssModulesLoader) }, { test: /\.gcss$/, loader: /*useExtract ? extractText(cssLoader) :*/inlineStyleLoader(cssLoader)
-    //, { test: /\.less$/, loader: /*useExtract ? extractText(lessLoader) :*/ inlineStyleLoader(lessLoader) }
-  }];
+  return [{ test: /\.css$/, loader: /* useExtract ? extractText(cssModulesLoader) :*/inlineStyleLoader(cssModulesLoader) }, { test: /\.gcss$/, loader: /*useExtract ? extractText(cssLoader) :*/inlineStyleLoader(cssLoader) }
+  //, { test: /\.less$/, loader: /*useExtract ? extractText(lessLoader) :*/ inlineStyleLoader(lessLoader) }
+  ];
 };
 
 var getFontLoader = function getFontLoader(name) {

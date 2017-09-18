@@ -272,20 +272,7 @@ function pager(pure) {
           }
         }
         /** CALLED BY FILTER STREAM */
-        , filterDocumentData: this.props.filterStream ? function (documentData, filterState) {
-          if (filterState) {
-            var anyFiltered = false;
-            var filtered = documentData.filter(function (datum, documentID) {
-              var value = Object.keys(filterState).some(function (columnID) {
-                return filterState[columnID](documentID) === true;
-              });
-              if (value) anyFiltered = true;
-              return value;
-            });
-            return anyFiltered ? filtered : documentData;
-          }
-          return documents;
-        } : null
+        , filterDocumentData: this.props.filterStream ? this.props.filterDocumentData : null
         /** MAP CELL AND SORT DATA AND ADD TO DATA CONSTRUCT */
 
         , mapData: function mapData(documentData, columnData, access) {
@@ -414,7 +401,8 @@ function pager(pure) {
       mapStatusToActions: PropTypes.func.isRequired
     },
     state: { status: Immutable.Map(),
-      filterState: null
+      filterState: null,
+      filterFormName: null
     },
     init: function init() {
       var _this2 = this;
@@ -459,8 +447,8 @@ function pager(pure) {
           filterDocumentData = _props3.filterDocumentData,
           Filter = _props3.Filter;
 
-      if (filterStream) this.unsubscribe = filterStream(function (filterState) {
-        return _this3.setState({ filterState: filterState });
+      if (filterStream) this.unsubscribe = filterStream(function (filterState, formName) {
+        return _this3.setState({ filterState: filterState, filterFormName: formName });
       });
     },
     componentWillUnmount: function componentWillUnmount() {
@@ -481,10 +469,12 @@ function pager(pure) {
           earlyProps = _props4.earlyProps,
           childProps = _objectWithoutProperties(_props4, ['documentData', 'columnData', 'filterDocumentData', 'mapData', 'sortData', 'sortDocuments', 'mapDataToStatus', 'mapStatusToActions', 'mapLateProps', 'earlyProps']);
 
-      var filterState = this.state.filterState;
+      var _state = this.state,
+          filterState = _state.filterState,
+          filterFormName = _state.filterFormName;
 
 
-      var filteredData = filterDocumentData && filterState ? filterDocumentData(documentData, filterState) : documentData;
+      var filteredData = filterDocumentData && filterState ? filterDocumentData(documentData, filterState, filterFormName) : documentData;
 
       var rawData = mapData(filteredData, columnData, this.access);
       var data = sortData ? sortData(rawData, this.access) : rawData;

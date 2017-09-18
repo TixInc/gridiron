@@ -180,7 +180,7 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
       , componentWillReceiveProps(nextProps) {
           const { formName, inputs } = this.props
           if(inputs !== nextProps.inputs)
-            EE.emit(events.formWillUpdate(formName), nextProps.inputs)
+            EE.emit(events.formWillUpdate(formName), nextProps.inputs, formName)
         }
       , init() {
           this.onSubmit = e => {
@@ -329,9 +329,9 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
 
     const subscribe = (formNames, cb) => {
       console.warn('SUBSCRIBE', formNames)
-      return formNames.map(formName => subscribeForm(formName, (...args) => {
-        let formState = formNames.map(name => currentState.get(name))
-        cb(formState)
+      return formNames.map(formName => subscribeForm(formName, (form, formName) => {
+        //let formState = formNames.map(name => currentState.get(name))
+        cb(form, formName)
       }))
     }
 

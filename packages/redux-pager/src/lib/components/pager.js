@@ -172,21 +172,7 @@ export default function pager (pure) {
               }
             }}
             /** CALLED BY FILTER STREAM */
-            filterDocumentData={this.props.filterStream ? (documentData, filterState) => {
-              if(filterState) {
-                let anyFiltered = false
-                const filtered = documentData.filter((datum, documentID) => {
-                  const value = Object.keys(filterState).some(columnID => (
-                    filterState[columnID](documentID) === true
-                  ))
-                  if(value)
-                    anyFiltered = true
-                  return value
-                })
-                return anyFiltered ? filtered : documentData
-              }
-              return documents
-            } : null}
+            filterDocumentData={this.props.filterStream ? this.props.filterDocumentData : null}
             /** MAP CELL AND SORT DATA AND ADD TO DATA CONSTRUCT */
 
             mapData={(documentData, columnData, access) => {
@@ -316,6 +302,7 @@ export default function pager (pure) {
                   }
     , state:  { status: Immutable.Map()
               , filterState: null
+              , filterFormName: null
               }
     , init() {
         const getProps = () => this.props
@@ -334,7 +321,7 @@ export default function pager (pure) {
     , componentWillMount() {
         const { mapStateToDocumentData, mapColumnData, filterStream, filterDocumentData, Filter } = this.props
         if(filterStream)
-          this.unsubscribe = filterStream(filterState => this.setState({ filterState }))
+          this.unsubscribe = filterStream((filterState, formName) => this.setState({ filterState, filterFormName: formName }))
       }
     , componentWillUnmount() {
         // if(this.unsubscribe)
@@ -354,9 +341,9 @@ export default function pager (pure) {
               , ...childProps
               } = this.props
 
-        const { filterState } = this.state
+        const { filterState, filterFormName } = this.state
 
-        const filteredData = filterDocumentData && filterState ? filterDocumentData(documentData, filterState) : documentData
+        const filteredData = filterDocumentData && filterState ? filterDocumentData(documentData, filterState, filterFormName) : documentData
 
         const rawData = mapData(filteredData, columnData, this.access)
         const data = sortData ? sortData(rawData, this.access) : rawData
