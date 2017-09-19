@@ -212,7 +212,7 @@ export default function formsContext (pure) {
                                   )
             const labelSpan = children ? <span className={cn(styles.inputLabel, theme.inputLabel)}>{children}</span> : null
             return (
-              <span className={fieldClass}>
+              <span className={fieldClass} id="field">
                 <label className={cn(styles.inputLabel, theme.inputLabel)}>
                   {align === 'left' ? null : labelSpan}
                   <Input ref={x => this.inner = x} {...inputProps} styles={styles} theme={theme} />

@@ -173,6 +173,7 @@
 
 
 .field {
+  font-size: 12px;
   & label {
     display: flex;
     flex-direction: row;

@@ -44,7 +44,7 @@ export default function pane (pure) {
         */
 
         return (
-          <div className={className}>
+          <div className={className} id='pane'>
             <div className={cn(styles.paneContent, theme.paneContent)}>
               {children}
             </div>

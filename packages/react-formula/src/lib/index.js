@@ -59,6 +59,11 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
         }
       }
     }
+
+    function emitEvent(eventKey) {
+      EE.emit(eventKey)
+    }
+
     const events =  { registerInput: 'registerInput'
                     , updateInput: 'updateInput'
                     , formsDidUpdate: 'formsDidUpdate'
@@ -362,7 +367,7 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
     forms.getState = getState
     forms.subscribe = subscribe
     forms.subscribeInput = subscribeInput
-    return Object.assign(forms, { getState, subscribe, subscribeInput })
+    return Object.assign(forms, { getState, subscribe, subscribeInput, registerListeners, emitEvent })
   }
   let formula = scope(APP_SCOPE)
   formula.scope = scope

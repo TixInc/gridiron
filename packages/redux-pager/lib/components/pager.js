@@ -392,7 +392,7 @@ function pager(pure) {
     }
   });
 
-  var PagerDocumentFilter = pure({ displayName: 'PagerDocumentFilter',
+  var PagerDocumentFilter = pure.impure({ displayName: 'PagerDocumentFilter',
     propTypes: { documentData: PropTypes.object.isRequired,
       columnData: PropTypes.object,
       mapData: PropTypes.func.isRequired,
@@ -401,8 +401,7 @@ function pager(pure) {
       mapStatusToActions: PropTypes.func.isRequired
     },
     state: { status: Immutable.Map(),
-      filterState: null,
-      filterFormName: null
+      filters: null
     },
     init: function init() {
       var _this2 = this;
@@ -448,7 +447,9 @@ function pager(pure) {
           Filter = _props3.Filter;
 
       if (filterStream) this.unsubscribe = filterStream(function (filterState, formName) {
-        return _this3.setState({ filterState: filterState, filterFormName: formName });
+        var currentFilters = _this3.state.filters ? _this3.state.filters : {};
+        currentFilters[formName] = filterState;
+        _this3.setState({ filters: currentFilters });
       });
     },
     componentWillUnmount: function componentWillUnmount() {
@@ -469,12 +470,10 @@ function pager(pure) {
           earlyProps = _props4.earlyProps,
           childProps = _objectWithoutProperties(_props4, ['documentData', 'columnData', 'filterDocumentData', 'mapData', 'sortData', 'sortDocuments', 'mapDataToStatus', 'mapStatusToActions', 'mapLateProps', 'earlyProps']);
 
-      var _state = this.state,
-          filterState = _state.filterState,
-          filterFormName = _state.filterFormName;
+      var filters = this.state.filters;
 
 
-      var filteredData = filterDocumentData && filterState ? filterDocumentData(documentData, filterState, filterFormName) : documentData;
+      var filteredData = filterDocumentData && filters ? filterDocumentData(documentData, filters) : documentData;
 
       var rawData = mapData(filteredData, columnData, this.access);
       var data = sortData ? sortData(rawData, this.access) : rawData;

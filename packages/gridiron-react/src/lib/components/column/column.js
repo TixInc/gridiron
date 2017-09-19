@@ -1,5 +1,7 @@
 import cn from 'classnames'
 import pane from '../pane'
+import EventEmitter from 'eventemitter3'
+const EE = new EventEmitter()
 
 export default function column(pure) {
   const { React, PropTypes, cloneElement, formula, Pre, defaults } = pure
@@ -38,6 +40,9 @@ export default function column(pure) {
                       , ...columnProps
                       }
       , state: { paneVisible: false }
+      , componentDidMount() {
+        formula.registerListeners('hideFilterForms', [() => {this.setState({paneVisible: false})}])
+      }
       , render() {
           const { children
                 , styles

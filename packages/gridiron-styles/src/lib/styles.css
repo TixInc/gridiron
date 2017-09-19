@@ -454,6 +454,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 0.3em;
+  position: relative;
   /*
   font-size:0.8em;
   */
@@ -507,20 +508,21 @@
 
 .pane {
   position: absolute;
-  flex: 1 1 auto;
-  display: flex;
+  /* flex: 1 1 auto;
+  display: flex; */
   z-index: 1000;
-  top:100%;
-  left: 0;
-  right: 0;
-  margin:0;
-  padding:0;
+  top:24px;
+  right: 0px;
+  /* right: 0;
+  padding:0; */
   animation-duration: 300ms;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
-  overflow: auto;
+  /* overflow: auto; */
   visibility: hidden;
-
+  margin-right: auto;
+  margin-left: auto;
+  width: auto;
   will-change: overflow, transform, clip-path, visibility;
 
   &::-webkit-scrollbar-track {
