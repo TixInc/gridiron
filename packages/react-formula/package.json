@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/react-formula",
-  "version": "0.23.8",
+  "version": "0.23.10",
   "description": "Performant, stylized React form components.",
   "main": "lib/index.js",
   "scripts": {
