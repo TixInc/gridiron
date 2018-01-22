@@ -492,12 +492,23 @@ function pager(pure) {
 
   var Pager = pure({ displayName: 'Pager',
     defaultProps: defaults,
+    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+      // putting this in place to 'refresh' grid after data changes (was getting empty grid)
+      var status = nextProps.status,
+          actions = nextProps.actions;
+
+      var data = status.get('data');
+      var documents = data ? data.get('documents') : null;
+
+      if (documents && documents.size === 0) {
+        actions.fastBackward();
+      }
+    },
     render: function render() {
       var _props5 = this.props,
           children = _props5.children,
-          data = _props5.data,
           content = _props5.content,
-          childProps = _objectWithoutProperties(_props5, ['children', 'data', 'content']);
+          childProps = _objectWithoutProperties(_props5, ['children', 'content']);
 
       var status = childProps.status,
           actions = childProps.actions,

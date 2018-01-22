@@ -370,8 +370,18 @@ export default function pager (pure) {
    const Pager = pure (
     { displayName: 'Pager'
     , defaultProps: defaults
+    , componentWillReceiveProps(nextProps) {
+      // putting this in place to 'refresh' grid after data changes (was getting empty grid)
+      const { status, actions } = nextProps
+      var data = status.get('data')
+      var documents = data ? data.get('documents') : null
+
+      if (documents && documents.size === 0) {
+        actions.fastBackward()
+      }
+    }
     , render() {
-        const { children, data, content, ...childProps } = this.props
+        const { children, content, ...childProps } = this.props
         const { status, actions, styles, theme } = childProps
 
         return children({ ...childProps
