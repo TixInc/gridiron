@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/gridiron",
-  "version": "0.23.10",
+  "version": "0.23.11",
   "description": "Feature-Packed Grid Framework",
   "main": "lib/index.js",
   "files": [
