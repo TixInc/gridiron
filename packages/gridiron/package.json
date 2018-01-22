@@ -43,7 +43,7 @@
     "@tixinc/react-formula": "^0.23.10",
     "@tixinc/react-formula-styles": "^0.23.10",
     "@tixinc/react-formula-themes": "^0.23.8",
-    "@tixinc/redux-pager": "^0.23.10",
+    "@tixinc/redux-pager": "^0.23.11",
     "babel-core": "^6.9.0",
     "babel-runtime": "^6.9.0",
     "chai": "^3.5.0",
