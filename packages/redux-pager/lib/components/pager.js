@@ -230,9 +230,7 @@ function pager(pure) {
         return (index + 1).toLocaleString();
       },
       documentsPerPageOption: function documentsPerPageOption(_ref12) {
-        var index = _ref12.index,
-            props = _objectWithoutProperties(_ref12, ['index']);
-
+        var index = _ref12.index;
         return typeof index === 'number' ? index.toLocaleString() : index;
       }
     }

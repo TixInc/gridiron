@@ -134,7 +134,7 @@ export default function pager (pure) {
                                         </span>
                                       )
                                     , selectOption: ({ index, ...props }) => (index + 1).toLocaleString()
-                                    , documentsPerPageOption: ({ index, ...props }) => typeof index === 'number' ? index.toLocaleString() : index
+                                    , documentsPerPageOption: ({ index }) => typeof index === 'number' ? index.toLocaleString() : index
                                     }
                         , ...defaults
                         }

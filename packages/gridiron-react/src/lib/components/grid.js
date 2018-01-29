@@ -237,7 +237,7 @@ export default function grid (pure) {
         this._updateLocals()
       }
     , componentWillReceiveProps(nextProps) {
-        if(this.props.data !== nextProps.data)
+        if(this.props.data.size !== nextProps.data.size)
           this._updateLocals()
       }
     , shouldComponentUpdate(...args) {
