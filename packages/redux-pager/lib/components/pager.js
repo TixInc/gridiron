@@ -497,8 +497,10 @@ function pager(pure) {
 
       var data = status.get('data');
       var documents = data ? data.get('documents') : null;
+      var currentData = this.props.status.get('data');
+      var currentDocuments = currentData ? currentData.get('documents') : null;
 
-      if (documents && documents.size === 0) {
+      if (currentDocuments !== documents && documents && documents.size === 0) {
         actions.fastBackward();
       }
     },
