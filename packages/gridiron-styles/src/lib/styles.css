@@ -519,6 +519,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   /* overflow: auto; */
+  overflow: hidden;
   visibility: hidden;
   margin-right: auto;
   margin-left: auto;
@@ -544,6 +545,7 @@
 .paneHidden .pane {
   clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
   transform: translateY(-100%);
+  display: none;
 }
 
 .paneVisible .pane,
@@ -552,7 +554,6 @@
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   transform: translateY(0%);
 }
-
 
 .paneTransition.paneVisible .pane {
   overflow:hidden !important;
