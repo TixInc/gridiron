@@ -85,7 +85,8 @@ function pager(pure) {
           case 'string':
             return currentKey;
           default:
-            if (currentKey === null) return '';else return currentKey.toString();
+            if (currentKey === null) return '';
+            if (Object.prototype.toString.call(currentKey) === '[object Date]') return currentKey;else return currentKey.toString();
         }
       });
     }
@@ -105,6 +106,9 @@ function pager(pure) {
             if (keyA > keyB) return 1 * multiplier;
             if (keyB > keyA) return -1 * multiplier;
             continue;
+          }
+          if (Object.prototype.toString.call(keyA) === '[object Date]') {
+            return (keyB - keyA) * multiplier;
           }
           result = keyA.localeCompare(keyB) * multiplier;
           if (result !== 0) return result;

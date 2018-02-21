@@ -61,6 +61,8 @@ export default function pager (pure) {
                                   default:
                                     if (currentKey === null)
                                       return ''
+                                    if (Object.prototype.toString.call(currentKey) === '[object Date]')
+                                      return currentKey
                                     else
                                       return currentKey.toString()
                                 }
@@ -82,6 +84,9 @@ export default function pager (pure) {
                                   if(keyB > keyA)
                                     return -1 * multiplier
                                   continue
+                                }
+                                if (Object.prototype.toString.call(keyA) === '[object Date]') {
+                                  return (keyB - keyA) * multiplier
                                 }
                                 result = keyA.localeCompare(keyB) * multiplier
                                 if(result !== 0)
