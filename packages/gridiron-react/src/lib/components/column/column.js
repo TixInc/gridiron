@@ -6,9 +6,9 @@ export default function column(pure) {
   const Pane = pane(pure)
 
   const SortIcon = ({ direction }) => {
-    let sortClass = 'fa fa-sort'
+    let sortClass = 'far fa-sort'
     if(direction === 'asc' || direction === 'desc')
-      sortClass += `-${direction}`
+      sortClass += `-${direction === 'asc' ? 'down' : 'up'}`
     return <i className={sortClass} />
   }
 
@@ -39,7 +39,7 @@ export default function column(pure) {
                       }
       , state: { paneVisible: false }
       , componentDidMount() {
-        formula.registerListeners('hideFilterForms', [() => {this.setState({paneVisible: false})}])
+        formula.registerListeners('hideFilterForms', [ () => {this.setState({ paneVisible: false })} ])
       }
       , render() {
           const { children
@@ -85,7 +85,7 @@ export default function column(pure) {
                       className={cn(styles.filterButton, theme.filterButton)}
                       onClick={() => this.setState({ paneVisible: !paneVisible })}
                     >
-                      <i className={`fa fa-filter${''}`} />
+                      <i className={`far fa-filter${''}`} />
                     </button>
                   ) : null}
                   {radio ? (
