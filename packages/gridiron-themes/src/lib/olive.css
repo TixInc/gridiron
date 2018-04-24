@@ -1,12 +1,17 @@
-/** xs-screen | 320px  */ @custom-media --xs-screen only screen and (width >= 20em);
-/** sm-screen | 480px  */ @custom-media --sm-screen only screen and (width >= 30em);
-/** md-screen | 600px  */ @custom-media --md-screen only screen and (width >= 37.5em);
-/** lg-screen | 768px  */ @custom-media --lg-screen only screen and (width >= 48em);
-/** xl-screen | 900px  */ @custom-media --xl-screen only screen and (width >= 56.25em);
-/** 2x-screen | 1100px */ @custom-media --2x-screen only screen and (width >= 68.75em);
-/** 3x-screen | 1300px */ @custom-media --3x-screen only screen and (width >= 81.25em);
-
-
+/** xs-screen | 320px  */
+@custom-media --xs-screen only screen and (width >= 20em);
+/** sm-screen | 480px  */
+@custom-media --sm-screen only screen and (width >= 30em);
+/** md-screen | 600px  */
+@custom-media --md-screen only screen and (width >= 37.5em);
+/** lg-screen | 768px  */
+@custom-media --lg-screen only screen and (width >= 48em);
+/** xl-screen | 900px  */
+@custom-media --xl-screen only screen and (width >= 56.25em);
+/** 2x-screen | 1100px */
+@custom-media --2x-screen only screen and (width >= 68.75em);
+/** 3x-screen | 1300px */
+@custom-media --3x-screen only screen and (width >= 81.25em);
 
 /**
  * BASE 16 COLOR SCHEMES
@@ -30,22 +35,22 @@
  */
 
 :root {
-  --base00: #F1F1F1;
-  --base01: #CCC6C6;
-  --base02: #8C8888;
-  --base03: #7F7C7C;
+  --base00: #f1f1f1;
+  --base01: #ccc6c6;
+  --base02: #8c8888;
+  --base03: #7f7c7c;
   --base04: #333232;
-  --base05: #403E3E;
+  --base05: #403e3e;
   --base06: #242524;
   --base07: #252424;
-  --base08: #B5564A;
-  --base09: #DB742E;
-  --base0A: #EEB905;
-  --base0B: #5C8278;
-  --base0C: #3463A8;
-  --base0D: #4B6CD8;
-  --base0E: #5C6382;
-  --base0F: #6E5602;
+  --base08: #b5564a;
+  --base09: #db742e;
+  --base0A: #eeb905;
+  --base0B: #5c8278;
+  --base0C: #3463a8;
+  --base0D: #4b6cd8;
+  --base0E: #5c6382;
+  --base0F: #6e5602;
 }
 
 :root {
@@ -57,11 +62,10 @@
   --formula-green: rgb(121, 208, 255);
 
   --control-bg: var(--base01);
-  --control-even-bg: #E2E8C9;
+  --control-even-bg: #e2e8c9;
   --control-odd-bg: #f5f7ed;
   --control-fg: #575757;
   --control-border: color(var(--control-bg) whiteness(+20%));
-
 
   --control-fg-hover: color(var(--control-fg) whiteness(+15%));
   --control-bg-hover: color(var(--control-bg) lightness(+10%));
@@ -82,16 +86,13 @@
   --control-subheader-fg: color(var(--control-fg) whiteness(+25%));
   --control-subheader-border: color(var(--control-header-bg) whiteness(+10%));
 
-
   --control-footer-bg: color(var(--control-bg) whiteness(+5%));
   --control-footer-fg: color(var(--control-fg) whiteness(+15%));
   --control-footer-border: color(var(--control-header-bg) whiteness(+10%));
 
-
   --control-child-bg: color(var(--control-bg) blackness(30%));
   --control-child-fg: var(--base04);
 }
-
 
 /** GRAPH */
 
@@ -103,15 +104,14 @@
   font-family: monospace;
   box-shadow: 2px 2px 3px rgba(50, 50, 50, 0.5);
   color: var(--control-fg);
-  border-radius:0;
+  border-radius: 0;
 
   @media (--lg-screen) {
-    border-radius:4px;
+    border-radius: 4px;
   }
 }
 
 /** END GRAPH */
-
 
 /** ACCORDION */
 
@@ -138,23 +138,22 @@
   margin: 15px;
 }
 
-
 /** END ACCORDION */
 
 /** CARDS */
 
 .cards {
-  margin:0;
+  margin: 0;
   padding: 0;
   border: 2px solid var(--control-border);
   font-size: 0.95rem;
   font-family: monospace;
   box-shadow: 2px 2px 3px rgba(50, 50, 50, 0.5);
   color: var(--control-fg);
-  border-radius:0;
+  border-radius: 0;
 
   @media (--lg-screen) {
-    border-radius:4px;
+    border-radius: 4px;
   }
 }
 
@@ -164,7 +163,6 @@
   border-style: solid;
   border-color: var(--control-border);
 }
-
 
 .cardsDocument {
   background-color: var(--control-transparent-bg);
@@ -190,7 +188,6 @@
 
 /** END CARDS */
 
-
 /** GRID */
 
 .grid {
@@ -200,10 +197,10 @@
   font-family: Lato;
   color: var(--control-fg);
   border: 1px solid var(--control-border);
-  border-radius:0;
+  border-radius: 0;
 
   @media (--lg-screen) {
-    border-radius:4px;
+    border-radius: 4px;
   }
 }
 
@@ -215,7 +212,7 @@
 .document.odd {
   color: var(--control-fg);
   background-color: var(--control-bg);
-/*  border-bottom: 1px groove var(--control-border);*/
+  /*  border-bottom: 1px groove var(--control-border);*/
   cursor: pointer;
 }
 
@@ -227,7 +224,7 @@
   background-color: var(--control-even-bg);
 
   &:hover {
-    background-color: color(var(--control-even-bg) blackness(+5%))
+    background-color: color(var(--control-even-bg) blackness(+5%));
   }
 }
 
@@ -235,7 +232,7 @@
   background-color: var(--control-odd-bg);
 
   &:hover {
-    background-color: color(var(--control-odd-bg) blackness(+5%))
+    background-color: color(var(--control-odd-bg) blackness(+5%));
   }
 }
 
@@ -243,7 +240,6 @@
 .documentFooter {
   border: 1px solid var(--control-subheader-border);
 }
-
 
 .expander {
   color: rgba(200, 200, 200, 0.7);
@@ -274,10 +270,8 @@
   padding: 0;
   margin: 0;
   & select {
-
   }
 }
-
 
 .paneVisible .header {
   background: linear-gradient(180deg, rgba(20, 20, 20, 0), rgba(20, 20, 20, 0.8));
@@ -287,7 +281,6 @@
 .paneHidden .header {
   border-color: rgba(100, 100, 100, 0.8);
 }
-
 
 .header button:focus {
   outline: none;
@@ -312,9 +305,10 @@
   /*
   box-shadow: 2px 2px 3px rgba(120, 120, 120, 0.5);
   */
-  background-color:rgb(184, 184, 184);
+  background-color: rgb(184, 184, 184);
   border-width: 0 1px 1px 1px;
   border-color: rgba(100, 100, 100, 0.8);
+  top: 75%;
 }
 
 .paneContent {
@@ -328,13 +322,42 @@
   padding: 5px; */
   width: 100%;
   max-height: 50vh;
-  font-family: "citizen",sans-serif;
+  font-family: "citizen", sans-serif;
   font-weight: 100;
-  color: black;
+  background: #fff;
+  padding: 0.5em;
+  color: #000;
+  border: 1px solid #ececec;
+  overflow-y: auto;
+}
+
+.paneContent i {
+  color: #666666;
+}
+
+.paneContent a,
+.paneContent button {
+  color: #2185d0;
+}
+
+.paneContent .inputUI {
+  background: #fff;
+}
+
+.paneContent label div {
+  background: #fff !important;
+  background: #fff !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 !important;
+}
+
+.paneContent label div:after {
+  border-color: #000 !important;
 }
 
 .paneContent input[type="checkbox"] {
-  background-color:#000;
+  background-color: #000;
   border: 2px solid #ddd;
 }
 
@@ -346,7 +369,6 @@
 }
 
 /** END GRID */
-
 
 /** PAGER */
 
@@ -366,6 +388,5 @@
     border-color: var(--control-border-hover);
   }
 }
-
 
 /** END PAGER */
