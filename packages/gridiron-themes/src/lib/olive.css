@@ -305,7 +305,7 @@
   /*
   box-shadow: 2px 2px 3px rgba(120, 120, 120, 0.5);
   */
-  background-color: rgb(184, 184, 184);
+  background-color: white; /*rgb(184, 184, 184); */
   border-width: 0 1px 1px 1px;
   border-color: rgba(100, 100, 100, 0.8);
   top: 75%;
@@ -328,7 +328,7 @@
   padding: 0.5em;
   color: #000;
   border: 1px solid #ececec;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .paneContent i {

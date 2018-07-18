@@ -519,7 +519,8 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   /* overflow: auto; */
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   visibility: hidden;
   margin-right: auto;
   margin-left: auto;
