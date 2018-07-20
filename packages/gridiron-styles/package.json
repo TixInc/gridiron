@@ -1,6 +1,6 @@
 {
   "name": "@tixinc/gridiron-styles",
-  "version": "0.23.12",
+  "version": "0.23.13",
   "description": "React Component Styles for CSS Modules",
   "main": "lib/index.js",
   "scripts": {

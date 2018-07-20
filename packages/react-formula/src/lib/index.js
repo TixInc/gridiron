@@ -327,10 +327,24 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
     )
 
     let currentState = Immutable.Map()
+    let filters = {}
     EE.on(events.formsDidUpdate, newState => {
       currentState = newState
     })
     const getState = () => currentState
+
+    const resetState = () => {
+      currentState = Immutable.Map()
+      filters = {}
+    }
+    
+    const setFilters = (formName, filter) => {
+      filters[formName] = filter
+    }
+
+    const getFilters = () => {
+      return filters
+    }
 
     const subscribe = (formNames, cb) => {
       console.warn('SUBSCRIBE', formNames)
@@ -342,7 +356,9 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
 
     function subscribeForm (formName, cb) {
       EE.on(events.formWillUpdate(formName), cb)
-      return () => EE.removeListener(events.formWillUpdate(formName), cb)
+      return () => {
+        EE.removeListener(events.formWillUpdate(formName), cb)
+      }
     }
 
     const subscribeInput = ([ formName, name ], cb) => {
@@ -367,7 +383,7 @@ export default function reactFormula (deps, { appScopeName = 'app', ...defaults 
     forms.getState = getState
     forms.subscribe = subscribe
     forms.subscribeInput = subscribeInput
-    return Object.assign(forms, { getState, subscribe, subscribeInput, registerListeners, emitEvent })
+    return Object.assign(forms, { getState, resetState, setFilters, getFilters, subscribe, subscribeInput, registerListeners, emitEvent })
   }
   let formula = scope(APP_SCOPE)
   formula.scope = scope

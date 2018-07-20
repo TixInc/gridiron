@@ -455,8 +455,7 @@ function pager(pure) {
       });
     },
     componentWillUnmount: function componentWillUnmount() {
-      // if(this.unsubscribe)
-      //   this.unsubscribe()
+      if (this.unsubscribe) this.unsubscribe();
     },
     render: function render() {
       var _props4 = this.props,
@@ -475,7 +474,7 @@ function pager(pure) {
       var filters = this.state.filters;
 
 
-      var filteredData = filterDocumentData && filters ? filterDocumentData(documentData, filters) : documentData;
+      var filteredData = filterDocumentData ? filterDocumentData(documentData, filters) : documentData;
 
       var rawData = mapData(filteredData, columnData, this.access);
       var data = sortData ? sortData(rawData, this.access) : rawData;

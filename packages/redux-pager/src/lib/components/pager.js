@@ -327,12 +327,12 @@ export default function pager (pure) {
           this.unsubscribe = filterStream((filterState, formName) => {
             let currentFilters = this.state.filters ? this.state.filters : {}
             currentFilters[formName] = filterState
-            this.setState({filters: currentFilters})
+            this.setState({ filters: currentFilters })
           })
       }
     , componentWillUnmount() {
-        // if(this.unsubscribe)
-        //   this.unsubscribe()
+        if(this.unsubscribe)
+          this.unsubscribe()
       }
     , render() {
         const { documentData
@@ -350,7 +350,7 @@ export default function pager (pure) {
 
         const { filters } = this.state
 
-        const filteredData = filterDocumentData && filters ? filterDocumentData(documentData, filters) : documentData
+        const filteredData = filterDocumentData ? filterDocumentData(documentData, filters) : documentData
 
         const rawData = mapData(filteredData, columnData, this.access)
         const data = sortData ? sortData(rawData, this.access) : rawData
