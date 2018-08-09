@@ -69,7 +69,6 @@
   margin: 0 0.2em;
   padding: 0.1em 0.2em;
   font-family: monospace;
-  font-size:0.9rem;
 }
 
 .pagerSelect {
@@ -301,13 +300,9 @@
   font-weight: bold;
   padding-left: 6px;
   padding-right: 6px;
-
-
 }
 
 .gridFooter {
-  font-size:0.85rem;
-
 /*  @media (--lg-screen) {
     font-size:0.55rem;
   }
@@ -497,7 +492,6 @@
   border: 1px solid transparent;
   cursor: pointer;
   background-color: transparent;
-  font-size:0.8em;
 }
 
 .documentHeaderContent,
