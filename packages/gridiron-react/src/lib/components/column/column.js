@@ -39,7 +39,13 @@ export default function column(pure) {
                       }
       , state: { paneVisible: false }
       , componentDidMount() {
-        formula.registerListeners('hideFilterForms', [ () => {this.setState({ paneVisible: false })} ])
+        this.isCancelled = false
+        formula.registerListeners('hideFilterForms', [ () => {
+          !this.isCancelled && this.setState({ paneVisible: false })
+        } ])
+      }
+      , componentWillUnmount() {
+        this.isCancelled = true
       }
       , render() {
           const { children

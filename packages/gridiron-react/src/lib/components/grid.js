@@ -384,7 +384,6 @@ export default function grid (pure) {
 
         return (
           <templates.Container
-            ref={x => this.container = x}
             style={style}
             className={cn(className, selectStyles(useContentHeight ? 'fixedHeight' : 'variableHeight'))}
             aria-label={this.props['aria-label']}
