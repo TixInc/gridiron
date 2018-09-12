@@ -240,8 +240,14 @@ export default function grid (pure) {
         if(this.props.data.size !== nextProps.data.size)
           this._updateLocals()
       }
-    , shouldComponentUpdate(...args) {
-        return shouldGridUpdate(this, ...args)
+    , shouldComponentUpdate(nextProps, nextState) {
+        if (!this.props.data.equals(nextProps.data))
+          return true
+
+        if (this.props.selectedRowID !== nextProps.selectedRowID)
+          return true
+          
+        return false
       }
     , render () {
         const { className
@@ -382,6 +388,8 @@ export default function grid (pure) {
           )
         }
 
+        let docsToRender = documents.entrySeq().toJS()
+
         return (
           <templates.Container
             style={style}
@@ -398,7 +406,7 @@ export default function grid (pure) {
             ) : null}
 
             <templates.Body key="grid-body">
-              {documents.entrySeq().map(
+              {docsToRender.map(
                 ([ documentID, context ], documentIndex) => renderDocument({ documentID, documentIndex, context })
               )}
               <templates.Fill />
